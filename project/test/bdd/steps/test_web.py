@@ -5,7 +5,7 @@ from selenium import webdriver
 
 # Constants
  
-APP_URL = 'http://3.216.94.93:8080/'
+APP_URL = 'http://127.0.0.1:8080/'
 
 # Scenarios
  

@@ -10,7 +10,7 @@ import json
  
 # Constants
  
-APP_URL = 'http://127.0.0.1:5000/myapi/'
+APP_URL = 'http://100.27.39.229:8080/myapi/'
 
 # Scenarios
  
@@ -32,16 +32,21 @@ def browser():
 @given(parsers.parse('myapi version {v}'))
 def app_home(browser, v):
     browser.get(APP_URL+'version')
-    data = browser.page_source
-    print(data)
-    r = json.loads(data)
-    assert r['version'] == v
+    #data = browser.page_source
+    data = browser.find_element(By.ID, 'json')
+    print(data.text)
+    r = json.loads(data.text)
+    assert r['result'] == v
 
 # When Steps
  
 @when(parsers.parse('user invokes GET /f2c/{f}'))
 def saysme_hello(browser,f):
-    browser.get(APP_URL+'/f2c/'+f)
+    url = APP_URL+'f2c/'+f
+    print(url)
+    browser.get(APP_URL+'f2c/'+f)
+    data = browser.page_source
+    print(data)
 
 
 
@@ -49,6 +54,6 @@ def saysme_hello(browser,f):
  
 @then(parsers.parse('api returns json with result: {c}'))
 def hello(browser, c):
-    data = browser.page_source
-    r = json.loads(data)
-    assert r['result'] == c
+    data = browser.find_element(By.ID, 'json')
+    r = json.loads(data.text)
+    assert r['result'] == float(c)

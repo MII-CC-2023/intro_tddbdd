@@ -23,3 +23,10 @@ def test_centigrados_to_fahrenheit(conversor):
     assert hasattr(conversor, "centigrados_to_fahrenheit"), "La clase Conversor debe tener un método centigrados_to_fahrenheit"
     assert conversor.centigrados_to_fahrenheit(0) == 32, "0ºC son 32ºF"
     assert conversor.centigrados_to_fahrenheit(10) == 50, "10ºC son 50ºF"
+
+@pytest.mark.parametrize("data", [0, 1, 2, 3])
+def test_invertir(conversor, data):
+    temp = conversor.fahrenheit_to_centigrados(data)
+    grados = conversor.centigrados_to_fahrenheit(temp)
+    assert grados == data
+    

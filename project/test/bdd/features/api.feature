@@ -1,6 +1,13 @@
 Feature: test myapi v2
 
-  Scenario: convert fahrenheit to centigrados
+
+
+  Scenario Outline: convert fahrenheit to centigrados
     Given myapi version v2
-    When user invokes GET /f2c/32
-    Then api returns json with result: 0.0
+    When user invokes GET /f2c/<f>
+    Then for <f>, api returns json with result: <c>
+  
+    Examples: 
+        | f | c |
+        | 32  | 0.0 |
+        | 50  | 10.0 |

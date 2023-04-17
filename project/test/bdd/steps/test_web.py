@@ -5,7 +5,7 @@ from selenium import webdriver
 
 # Constants
  
-APP_URL = 'http://127.0.0.1:8080/'
+APP_URL = 'http://3.80.190.81:8080/'
 
 # Scenarios
  
@@ -38,4 +38,4 @@ def saysme_hello():
  
 @then(parsers.parse('se muestra el mensaje "{saludo}"'))
 def hello(browser, saludo):
-    assert saludo in browser.page_source
+    assert saludo in browser.page_source, f"La página debe incluir el mensaje {saludo}."
